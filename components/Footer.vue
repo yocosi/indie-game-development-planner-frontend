@@ -1,0 +1,13 @@
+<script setup>
+</script>
+
+<template>
+  <div class="bg-gray-900 rounded h-20 px-2 py-1 text-white mb-2
+  flex justify-center items-center absolute inset-x-0 -bottom-2">
+    Copyright © 2024 Amari Pierre
+  </div>
+</template>
+
+
+<style lang="scss">
+</style>
