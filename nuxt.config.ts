@@ -3,6 +3,7 @@ import {resolve} from "path";
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  modules: ['@nuxtjs/supabase'],
   alias:{
     '@' : resolve(__dirname, "/"),
   },
@@ -12,5 +13,8 @@ export default defineNuxtConfig({
       tailwindcss: {},
       autoprefixer: {},
     },
+  },
+  supabase: {
+    redirect: false,
   },
 })

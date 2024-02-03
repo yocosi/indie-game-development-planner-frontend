@@ -1,5 +1,17 @@
 <script setup>
-import NuxtLink from "#app/components/nuxt-link.js";
+  const user = useSupabaseUser();
+  const client = useSupabaseClient();
+
+  console.log(user)
+
+  async function logout(){
+    try{
+      const {error} = await client.auth.signOut();
+      if (error) throw error;
+    } catch (error){
+      console.log(error.message);
+    }
+  }
 </script>
 
 <template>
@@ -10,7 +22,18 @@ import NuxtLink from "#app/components/nuxt-link.js";
         LOGO
       </NuxtLink>
     </div>
-    <div class="header-menu-container flex justify-center items-center font-medium text-xl ml-96">
+    <div v-if="!user" class="header-menu-container flex justify-center items-center font-medium text-xl ml-96">
+      <NuxtLink to="/">
+        <p class="m-4 hover:underline underline-offset-8 hover:cursor-pointer hover:opacity-70">Dashboard</p>
+      </NuxtLink>
+      <NuxtLink to="/projects">
+        <p class="m-4 hover:underline underline-offset-8 hover:cursor-pointer hover:opacity-70">Projects</p>
+      </NuxtLink>
+      <NuxtLink to="/tasks">
+        <p class="m-4 hover:underline underline-offset-8 hover:cursor-pointer hover:opacity-70">Tasks</p>
+      </NuxtLink>
+    </div>
+    <div v-else class="header-menu-container flex justify-center items-center font-medium text-xl ml-72">
       <NuxtLink to="/">
         <p class="m-4 hover:underline underline-offset-8 hover:cursor-pointer hover:opacity-70">Dashboard</p>
       </NuxtLink>
@@ -34,7 +57,7 @@ import NuxtLink from "#app/components/nuxt-link.js";
         focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required>
         </div>
       </form>
-      <NuxtLink to="/login">
+      <NuxtLink v-if="!user" to="/login">
         <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-3 overflow-hidden text-sm font-medium text-blue-500 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500
     group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-1 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
           <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-gray-900 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
@@ -43,12 +66,21 @@ import NuxtLink from "#app/components/nuxt-link.js";
         </button>
       </NuxtLink>
 
-      <NuxtLink to="/signup">
+      <NuxtLink v-if="!user" to="/signup">
         <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-3 overflow-hidden text-sm font-medium text-blue-500 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500
     group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-1 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
           <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-gray-900 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
           Sign-up
           </span>
+        </button>
+      </NuxtLink>
+
+      <NuxtLink to="/login">
+        <button v-if="user" @click="logout" class="relative inline-flex items-center justify-center p-0.5 mb-2 me-3 overflow-hidden text-sm font-medium text-blue-500 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500
+  group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-1 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+        <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-gray-900 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+        Logout
+        </span>
         </button>
       </NuxtLink>
     </div>
