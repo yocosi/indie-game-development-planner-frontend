@@ -39,12 +39,7 @@
         <p>{{errorMsg}}</p>
       </div>
       <div class="flex items-start mb-5">
-        <div class="flex items-center h-6">
-          <input id="remember" type="checkbox" value="" class="w-3 h-3 border border-gray-400 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300
-          dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required checked>
-        </div>
         <div class="flex flex-row items-center">
-          <label for="remember" class="ms-2 font-medium text-gray-400 dark:text-gray-300 pr-32">Remember me</label>
           <NuxtLink to="/resetting" class="text-blue-500 font-medium hover:opacity-70">Forgot password?</NuxtLink>
         </div>
       </div>

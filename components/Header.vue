@@ -2,8 +2,6 @@
   const user = useSupabaseUser();
   const client = useSupabaseClient();
 
-  console.log(user)
-
   async function logout(){
     try{
       const {error} = await client.auth.signOut();
