@@ -4,8 +4,7 @@
 
   async function logout(){
     try{
-      const {error} = await client.auth.signOut();
-      if (error) throw error;
+      await client.auth.signOut();
     } catch (error){
       console.log(error.message);
     }
@@ -27,9 +26,6 @@
       <NuxtLink to="/projects">
         <p class="m-4 hover:underline underline-offset-8 hover:cursor-pointer hover:opacity-70">Projects</p>
       </NuxtLink>
-      <NuxtLink to="/tasks">
-        <p class="m-4 hover:underline underline-offset-8 hover:cursor-pointer hover:opacity-70">Tasks</p>
-      </NuxtLink>
     </div>
     <div v-else class="header-menu-container flex justify-center items-center font-medium text-xl ml-72">
       <NuxtLink to="/">
@@ -37,9 +33,6 @@
       </NuxtLink>
       <NuxtLink to="/projects">
         <p class="m-4 hover:underline underline-offset-8 hover:cursor-pointer hover:opacity-70">Projects</p>
-      </NuxtLink>
-      <NuxtLink to="/tasks">
-        <p class="m-4 hover:underline underline-offset-8 hover:cursor-pointer hover:opacity-70">Tasks</p>
       </NuxtLink>
     </div>
     <div class="header-form-container flex justify-center items-center">

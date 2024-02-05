@@ -18,9 +18,7 @@
           },
         },
       });
-      if (error) {
-        throw error;
-      }
+      if(error) throw error;
       successMsg.value = "Check your email to confirm your account.";
     }catch (error){
       console.log(error)

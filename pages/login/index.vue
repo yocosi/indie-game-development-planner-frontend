@@ -11,9 +11,7 @@
         email: email.value,
         password: password.value,
       });
-      if (error) {
-        throw error;
-      }
+      if(error) throw error;
       await router.push("/");
     }catch (error){
       errorMsg.value = error.message;

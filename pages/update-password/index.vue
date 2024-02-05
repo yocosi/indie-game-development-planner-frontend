@@ -8,9 +8,7 @@ const successMsg = ref("");
 async function updatePassword(){
   try{
     const {error} = await client.auth.updateUser({ password: password.value })
-    if (error) {
-      throw error;
-    }
+    if(error) throw error;
     successMsg.value = "Password updated!";
     await router.push("/");
   } catch(error){

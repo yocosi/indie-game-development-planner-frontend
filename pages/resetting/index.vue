@@ -9,9 +9,7 @@
       const {error} = await client.auth.resetPasswordForEmail(email.value, {
         redirectTo: 'http://localhost:3000/update-password'
       })
-      if (error) {
-        throw error;
-      }
+      if(error) throw error;
       successMsg.value = "If the email address is in the database, you'll receive an email to reset your password.";
     } catch(error){
       console.log(error)
