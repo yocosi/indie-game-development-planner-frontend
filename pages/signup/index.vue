@@ -8,7 +8,7 @@
 
   async function signUp(){
     try {
-      const {user, error} = await client.auth.signUp({
+      const {error} = await client.auth.signUp({
         email: email.value,
         password: password.value,
         options: {
