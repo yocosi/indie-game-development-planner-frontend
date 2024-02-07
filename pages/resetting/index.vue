@@ -12,7 +12,7 @@
       if(error) throw error;
       successMsg.value = "If the email address is in the database, you'll receive an email to reset your password.";
     } catch(error){
-      console.log(error)
+      console.error(error)
       errorMsg.value = error.message;
     }
   }

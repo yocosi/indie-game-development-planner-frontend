@@ -21,7 +21,7 @@
       if(error) throw error;
       successMsg.value = "Check your email to confirm your account.";
     }catch (error){
-      console.log(error)
+      console.error(error);
       errorMsg.value = error.message;
     }
   }

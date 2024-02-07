@@ -20,7 +20,7 @@
       if(error) throw error;
       successMsg.value = "Project deleted."
     } catch(error){
-      console.log(error);
+      console.error(error);
       errorMsg.value = error.message;
     }
   }
@@ -43,7 +43,7 @@
       </div>
       <div class="flex justify-center items-center">
         <button type="submit" class="text-white bg-blue-600 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full
-      sm:w-auto px-40 py-2.5 mr-7 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create</button>
+      sm:w-auto px-40 py-2.5 mr-7 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Delete</button>
       </div>
     </form>
   </div>

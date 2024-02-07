@@ -12,7 +12,7 @@ async function updatePassword(){
     successMsg.value = "Password updated!";
     await router.push("/");
   } catch(error){
-    console.log(error)
+    console.error(error);
     errorMsg.value = error.message;
   }
 }
