@@ -1,4 +1,6 @@
 <script setup>
+import {createProject, handleImageUpload} from "~/services/api.js"
+
   definePageMeta({
     middleware: ["auth"],
   });
@@ -17,60 +19,43 @@
   let imageUploadedMsg = ref("");
   let imageErrorMsg = ref("");
 
-
-  async function createProject(){
-    try{
-      const {error} = await client.from("projects")
-          .insert({
-            title: projectName.value,
-            description: projectDescription.value,
-            image_path: imagePath,
-            game_design_document_path: gddUrl.value,
-            user_id: user.value.id
-          });
-      if(error) throw error;
-      successMsg.value = "Project created!"
-    } catch (error) {
-      console.error(error);
-      if(error.message === 'duplicate key value violates unique constraint "unique_title"'){
+  async function create(){
+    const res = await createProject(projectName.value, projectDescription.value, imagePath, gddUrl.value, client, user);
+    switch (res){
+      case 1:
+        successMsg.value = "Project created!";
+        break;
+      case 0:
         errorMsg.value = `A project with the title '${projectName.value}' already exist.`
-      } else {
-        errorMsg.value = error.message;
-      }
+            break;
+      default:
+        errorMsg.value = "Error: try another project name.";
     }
   }
 
-  async function handleImageUpload(event){
-    try{
-      const file = event.target.files[0];
-      const imageName = `${Date.now()}-${file.name}`;
-
-      const path = `${imageName}`;
-
-      const {data, error} = await client.storage.from("images")
-          .upload(path, file);
-      if (error) throw error;
-      imageUploadedMsg.value = "Image uploaded successfully!";
-      imagePath = data.path;
-    } catch(error) {
-      console.error('Error uploading image:', error.message);
-      imageErrorMsg.value = 'Error uploading image. Please retry with another format or another name.';
-    }
+async function uploadImage(event) {
+  imagePath = await handleImageUpload(event, client);
+  if (imagePath) {
+    imageUploadedMsg.value = "Image uploaded successfully!";
+  } else {
+    imageErrorMsg.value = 'Error uploading image. Please retry with another format or another name.';
   }
+}
+
 
 </script>
 
 <template>
   <div class="flex justify-center items-center flex-col mt-20 mb-32">
     <h1 class="text-gray-400 font-medium text-2xl">Create a new project</h1>
-    <form @submit.prevent="createProject" class="max-w-xl mx-auto border-2 border-gray-400 rounded-lg m-10 px-20 py-10 w-full">
+    <form @submit.prevent="create" class="max-w-xl mx-auto border-2 border-gray-400 rounded-lg m-10 px-20 py-10 w-full">
       <div class="mb-5">
-        <label for="project-name" class="block mb-2 text-lg font-medium text-gray-400 dark:text-white">Project name</label>
+        <label for="project-name" class="block mb-2 text-lg font-medium text-gray-400 dark:text-white">Project name*</label>
         <input v-model="projectName" type="text" id="project-name" class="bg-gray-900 border border-gray-400 text-gray-400 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5
         dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
       </div>
       <div class="mb-5">
-        <label for="project-description" class="block mb-2 text-lg font-medium text-gray-400 dark:text-white">Project description</label>
+        <label for="project-description" class="block mb-2 text-lg font-medium text-gray-400 dark:text-white">Project description*</label>
         <input v-model="projectDescription" type="text" id="project-description" class="bg-gray-900 border border-gray-400 text-gray-400 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5
         dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
       </div>
@@ -81,13 +66,13 @@
         dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
       </div>
       <div v-if="!imageErrorMsg && !imageUploadedMsg" class="mb-12">
-        <label for="project-image" class="block mb-2 text-lg font-medium text-gray-400 dark:text-white">Upload a picture for your project</label>
-        <input @change="handleImageUpload" type="file" id="project-image" class="bg-gray-900 border border-gray-400 text-gray-400 text-md rounded-lg
+        <label for="project-image" class="block mb-2 text-lg font-medium text-gray-400 dark:text-white">Upload a picture for your project*</label>
+        <input @change="uploadImage" type="file" id="project-image" class="bg-gray-900 border border-gray-400 text-gray-400 text-md rounded-lg
         focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5" required>
       </div>
       <div v-else class="mb-2">
-        <label for="project-image" class="block mb-2 text-lg font-medium text-gray-400 dark:text-white">Upload a picture for your project</label>
-        <input @change="handleImageUpload" type="file" id="project-image" class="bg-gray-900 border border-gray-400 text-gray-400 text-md rounded-lg
+        <label for="project-image" class="block mb-2 text-lg font-medium text-gray-400 dark:text-white">Upload a picture for your project*</label>
+        <input @change="uploadImage" type="file" id="project-image" class="bg-gray-900 border border-gray-400 text-gray-400 text-md rounded-lg
         focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5">
       </div>
       <div v-if="imageErrorMsg && !imageUploadedMsg" class="flex justify-center items-center font-medium text-red-600 mb-12">
