@@ -7,7 +7,7 @@
   async function resetPassword(){
     try{
       const {error} = await client.auth.resetPasswordForEmail(email.value, {
-        redirectTo: 'http://localhost:3000/update-password'
+        redirectTo: 'https://indie-game-repository.netlify.app/update-password'
       })
       if(error) throw error;
       successMsg.value = "If the email address is in the database, you'll receive an email to reset your password.";
