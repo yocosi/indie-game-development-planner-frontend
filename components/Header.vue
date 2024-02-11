@@ -6,7 +6,7 @@
     try{
       await client.auth.signOut();
     } catch (error){
-      console.log(error.message);
+      console.error(error.message);
     }
   }
 </script>
