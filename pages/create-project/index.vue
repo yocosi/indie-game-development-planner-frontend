@@ -51,29 +51,25 @@ async function uploadImage(event) {
     <form @submit.prevent="create" class="max-w-xl mx-auto border-2 border-gray-400 rounded-lg m-10 px-20 py-10 w-full">
       <div class="mb-5">
         <label for="project-name" class="block mb-2 text-lg font-medium text-gray-400 dark:text-white">Project name*</label>
-        <input v-model="projectName" type="text" id="project-name" class="bg-gray-900 border border-gray-400 text-gray-400 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5
-        dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+        <input v-model="projectName" type="text" id="project-name" class="bg-gray-900 border border-gray-400 text-gray-400 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 md:w-96 p-2.5" required>
       </div>
       <div class="mb-5">
         <label for="project-description" class="block mb-2 text-lg font-medium text-gray-400 dark:text-white">Project description*</label>
-        <input v-model="projectDescription" type="text" id="project-description" class="bg-gray-900 border border-gray-400 text-gray-400 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5
-        dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+        <input v-model="projectDescription" type="text" id="project-description" class="bg-gray-900 border border-gray-400 text-gray-400 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 md:w-96 p-2.5" required>
       </div>
       <div class="mb-5">
         <label for="gdd-url" class="block mb-2 text-lg font-medium text-gray-400 dark:text-white">Game design document url</label>
-        <input v-model="gddUrl" type="text" id="gdd-url" class="bg-gray-900 border border-gray-400 text-gray-400 text-md rounded-lg
-        focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5
-        dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <input v-model="gddUrl" type="text" id="gdd-url" class="bg-gray-900 border border-gray-400 text-gray-400 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 md:w-96 p-2.5">
       </div>
       <div v-if="!imageErrorMsg && !imageUploadedMsg" class="mb-12">
         <label for="project-image" class="block mb-2 text-lg font-medium text-gray-400 dark:text-white">Upload a picture for your project*</label>
         <input @change="uploadImage" type="file" id="project-image" class="bg-gray-900 border border-gray-400 text-gray-400 text-md rounded-lg
-        focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5" required>
+        focus:ring-blue-500 focus:border-blue-500 block w-80 md:w-96 p-2.5" required>
       </div>
       <div v-else class="mb-2">
         <label for="project-image" class="block mb-2 text-lg font-medium text-gray-400 dark:text-white">Upload a picture for your project*</label>
         <input @change="uploadImage" type="file" id="project-image" class="bg-gray-900 border border-gray-400 text-gray-400 text-md rounded-lg
-        focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5">
+        focus:ring-blue-500 focus:border-blue-500 block w-80 md:w-96 p-2.5">
       </div>
       <div v-if="imageErrorMsg && !imageUploadedMsg" class="flex justify-center items-center font-medium text-red-600 mb-12">
         <p>{{imageErrorMsg}}</p>
@@ -89,7 +85,7 @@ async function uploadImage(event) {
       </div>
       <div v-if="imageUploadedMsg" class="flex justify-center items-center">
         <button type="submit" class="text-white bg-blue-600 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full
-      sm:w-auto px-40 py-2.5 mr-7 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create</button>
+      pl-30 pr-30 py-2.5 mr-7 text-center">Create</button>
       </div>
     </form>
   </div>

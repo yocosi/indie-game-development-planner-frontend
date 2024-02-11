@@ -43,7 +43,7 @@ onMounted(async () => {
             alt=""
         />
       </div>
-      <p class="font-medium text-xl italic mb-5" style="width: 80rem; text-align: center;">{{ currentProject.description }}</p>
+      <p class="text-description font-medium text-xl italic mb-5">{{ currentProject.description }}</p>
       <a v-if="currentProject.game_design_document_path && isOwner" :href="currentProject.game_design_document_path" class="mb-5 font-medium">
         Game design document: <span class="font-normal hover:underline underline-offset-4">{{currentProject.game_design_document_path}}</span>
       </a>
@@ -80,3 +80,28 @@ group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-whi
     </NuxtLink>
   </div>
 </template>
+
+<style>
+.text-description{
+  width: 80rem;
+  text-align: center;
+}
+
+@media only screen and (max-width: 1290px){
+  .text-description{
+    width: 60rem;
+  }
+}
+
+@media only screen and (max-width: 950px){
+  .text-description{
+    width: 40rem;
+  }
+}
+
+@media only screen and (max-width: 650px){
+  .text-description{
+    width: 30rem;
+  }
+}
+</style>
