@@ -16,9 +16,7 @@
   flex justify-between items-center flex-col lg:flex-row">
     <div class="header-logo-container flex justify-center items-center font-medium">
       <NuxtLink to="/">
-        Indie
-        <br>
-        Games
+        <img src="~/public/favicon.ico" alt="">
       </NuxtLink>
     </div>
     <div v-if="!user" class="header-menu-container flex justify-center items-center font-medium text-xl mb-3 mt-3 lg:ml-36">
