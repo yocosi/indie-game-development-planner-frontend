@@ -20,7 +20,7 @@
 </script>
 
 <template>
-  <div class="flex justify-center items-center flex-col mt-20">
+  <div class="flex justify-center items-center flex-col mt-20 mb-32">
     <h1 class="text-gray-400 font-medium text-xl md:text-2xl">Connect to the Indie game development planner</h1>
     <p class="text-gray-400 font-medium">You don't have any account yet ? <NuxtLink to="/signup" class="text-blue-500 hover:opacity-70">Sign-up.</NuxtLink></p>
     <form @submit.prevent="signIn" class="max-w-xl mx-auto border-2 border-gray-400 rounded-lg m-10 px-20 py-10 w-full">

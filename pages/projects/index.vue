@@ -11,7 +11,7 @@ import {getProjectImage, getUserProjects} from "~/services/api.js";
 </script>
 
 <template>
-  <div class="flex justify-center items-center flex-col mt-20">
+  <div class="flex justify-center items-center flex-col mt-20 mb-32">
     <h1 class="text-gray-400 font-medium text-2xl">All my projects</h1>
     <div class="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4 3xl:grid-cols-4 gap-4 mb-12">
       <div v-for="project in userProjects">

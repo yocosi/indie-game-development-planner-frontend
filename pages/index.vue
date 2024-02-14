@@ -48,7 +48,7 @@
     </p>
   </div>
   <div class="border-2 w-full border-gray-500 mt-20 mb-20"></div>
-  <div class="flex justify-center items-center flex-col mt-20">
+  <div class="flex justify-center items-center flex-col mt-20 mb-32">
     <h1 class="text-gray-400 font-medium text-2xl mb-5">Recent public projects</h1>
     <div class="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4 3xl:grid-cols-4 gap-4">
       <div v-for="project in otherProjects" class="mt-4 flex flex-col justify-center items-center">

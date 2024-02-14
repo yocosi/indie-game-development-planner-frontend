@@ -19,7 +19,7 @@
 </script>
 
 <template>
-  <div class="flex justify-center items-center flex-col mt-20">
+  <div class="flex justify-center items-center flex-col mt-20 mb-32">
     <h1 class="text-gray-400 font-medium text-2xl">Reset password</h1>
     <form @submit.prevent="resetPassword" class="max-w-xl mx-auto border-2 border-gray-400 rounded-lg m-10 px-20 py-10 w-full">
       <div class="mb-10">
