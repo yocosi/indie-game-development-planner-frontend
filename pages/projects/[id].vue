@@ -32,7 +32,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="mt-5 flex flex-col items-center justify-center">
+  <div class="mt-5 mb-32 flex flex-col items-center justify-center">
     <div class="mt-4 flex flex-col justify-center items-center">
       <p class="font-light italic">(Owner: {{ owner }})</p>
       <p class="font-medium text-xl underline underline-offset-4 mb-5">{{ currentProject.title }}</p>
