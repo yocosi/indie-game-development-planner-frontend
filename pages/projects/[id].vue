@@ -43,7 +43,9 @@ onMounted(async () => {
             alt=""
         />
       </div>
-      <p class="text-description font-medium text-xl italic mb-5">{{ currentProject.description }}</p>
+      <div>
+        <p class="text-description font-medium text-xl italic mb-5 max-w-72 md:max-w-3xl">{{ currentProject.description }}</p>
+      </div>
       <a v-if="currentProject.game_design_document_path && isOwner" :href="currentProject.game_design_document_path" class="mb-5 font-medium">
         Game design document: <span class="font-normal hover:underline underline-offset-4">{{currentProject.game_design_document_path}}</span>
       </a>
